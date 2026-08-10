@@ -46,11 +46,22 @@ and wait for the whale icon to stop animating.
 
 ## Quick start
 
+Unzip the folder somewhere sensible (`C:\dev\k8s-starter` is fine — avoid OneDrive-synced
+paths, Docker builds get slow there), then:
+
 ```powershell
-git clone https://github.com/Afraz496/k8s-starter.git
-cd k8s-starter
+cd C:\dev\k8s-starter
 code .
 ```
+
+The Git history is already initialised with one commit. To put it on GitHub:
+
+```powershell
+git remote add origin https://github.com/Afraz496/k8s-starter.git
+git push -u origin main
+```
+
+Create the empty repo on GitHub first, without a README — this one already has one.
 
 Then, in the VS Code terminal (`` Ctrl+` ``):
 
