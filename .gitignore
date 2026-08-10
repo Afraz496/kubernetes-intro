@@ -7,3 +7,4 @@ venv/
 kubeconfig
 .DS_Store
 Thumbs.db
+~$kubernetes_for_modelling.pptx
