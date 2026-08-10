@@ -1,0 +1,28 @@
+# A Job runs pods until they finish, then stops. This one runs three at once -
+# one per region - which is the whole argument for a scheduler in three lines.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: anomaly-scan
+  namespace: modelling
+spec:
+  completions: 3            # three successful runs required
+  parallelism: 3            # all three at the same time
+  completionMode: Indexed   # gives each pod a JOB_COMPLETION_INDEX of 0, 1, 2
+  backoffLimit: 2           # retry a failing pod twice, then give up
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: scan
+          image: k8s-starter:dev
+          imagePullPolicy: IfNotPresent   # use the image kind loaded, don't go to a registry
+          args: ["--percentile", "97.5"]
+          resources:
+            requests:                     # what the scheduler reserves for this pod
+              cpu: "250m"                 # 250m = a quarter of one core
+              memory: "256Mi"
+            limits:                       # the ceiling it may not exceed
+              cpu: "1"
+              memory: "512Mi"

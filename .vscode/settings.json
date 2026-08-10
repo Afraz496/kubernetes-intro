@@ -1,0 +1,16 @@
+{
+  "files.eol": "\n",
+  "editor.rulers": [88],
+  "[yaml]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.autoIndent": "keep"
+  },
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.0-standalone-strict/all.json": [
+      "k8s/*.yaml"
+    ]
+  },
+  "python.analysis.extraPaths": ["app"],
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
+}

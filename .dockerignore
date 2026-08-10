@@ -1,0 +1,8 @@
+.git
+.vscode
+docs
+scripts
+k8s
+**/__pycache__
+*.pyc
+README.md

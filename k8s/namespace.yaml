@@ -1,0 +1,6 @@
+# A namespace is a folder for cluster objects. Everything this repo creates lives
+# here, so `kubectl delete namespace modelling` cleans up in one command.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: modelling

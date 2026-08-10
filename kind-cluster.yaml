@@ -1,0 +1,9 @@
+# Cluster shape. One control plane and two workers is enough to see a scheduler
+# actually make a choice - with a single node there is nothing to choose between.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: modelling-lab
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker

@@ -1,0 +1,29 @@
+# The same work on a schedule. This is the crontab replacement: run history,
+# logs, and concurrency rules come with it instead of being your problem.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nightly-anomaly-scan
+  namespace: modelling
+spec:
+  schedule: "0 2 * * *"            # 02:00 every day; try "*/2 * * * *" to watch it fire
+  timeZone: "America/Vancouver"
+  concurrencyPolicy: Forbid        # never start a run while the previous one is going
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      completions: 3
+      parallelism: 3
+      completionMode: Indexed
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: scan
+              image: k8s-starter:dev
+              imagePullPolicy: IfNotPresent
+              resources:
+                requests:
+                  cpu: "250m"
+                  memory: "256Mi"
